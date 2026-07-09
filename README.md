@@ -3,13 +3,13 @@
 Sistema Inteligente para la Gestión Automatizada de Tutorías Académicas
 
 ---------
-## Integrantes
+## Integrantes:
 
 - Sara Colmenares
 - Juan Jose Acevedo
 
 ----------
-## Descripción del problema
+## Descripción del problema:
 
 En muchas instituciones educativas, el proceso para solicitar una tutoría académica continúa realizándose de forma manual mediante mensajes, llamadas o correos electrónicos. Esto provoca problemas como:
 * Demoras en la asignación de tutores.
@@ -21,27 +21,29 @@ Como consecuencia, tanto estudiantes como coordinadores invierten demasiado tiem
 Para solucionar esta problemática se desarrolla TutorBot, un sistema de automatización construido en n8n que utiliza WhatsApp como canal de comunicación con los estudiantes y Google Sheets como base de datos.
 El sistema permite que un estudiante solicite una tutoría de forma automática, encuentre un tutor disponible según la materia y el horario, registre toda la información y mantenga actualizados los estados de cada tutoría.
 ----------
-## Objetivo del problema
+## Objetivo del problema:
 
-Desarrollar un sistema automatizado para la gestión de tutorías académicas mediante n8n, integrando WhatsApp y Google Sheets para facilitar la asignación inteligente de tutores, optimizar el uso de los recursos académicos y mejorar la experiencia de los estudiantes.
+- Desarrollar un sistema automatizado para la gestión de tutorías académicas mediante n8n, integrando WhatsApp y Google Sheets para facilitar la asignación inteligente de tutores, optimizar el uso de los recursos académicos y mejorar la experiencia de los estudiantes.
+
 ----------
-## Descripción del sistema
 
-TutorBot es un asistente conversacional que automatiza completamente el proceso de asignación de tutorías académicas.
+## Descripción del sistema:
+
+- TutorBot es un asistente conversacional que automatiza completamente el proceso de asignación de tutorías académicas.
 El estudiante interactúa mediante WhatsApp, donde puede registrarse, solicitar una tutoría, consultar el estado de sus solicitudes o cancelar una reserva.
 Toda la lógica del sistema es administrada por n8n, encargado de procesar los mensajes, consultar la base de datos, buscar tutores disponibles, registrar la información y enviar las notificaciones correspondientes.
 La información del sistema se almacena en Google Sheets, lo que permite disponer de una base de datos sencilla, organizada y fácil de mantener.
 -----------
-## Tecnologías utilizadas
+## Tecnologías utilizadas:
 
 * n8n
-* WhatsApp Business API
+* Telegram
 * Google Sheets
 * Google Drive
 * Webhooks
 * JavaScript (Function Nodes)
 -----------
-## Funcionalidades principales
+## Funcionalidades principales:
 
 El sistema permite:
 * Registro automático de estudiantes.
@@ -55,10 +57,11 @@ El sistema permite:
 * Envío de recordatorios automáticos.
 * Registro histórico de todas las asesorías.
 ------------
-## Base de datos
+## Base de datos:
 La base de datos se implementa mediante Google Sheets y está organizada en varias hojas.
 
 **ESTUDIANTES**
+
 Almacena la información básica de los estudiantes.
 Campos:
 * id_estudiante
@@ -68,6 +71,7 @@ Campos:
 * semestre
 
 **TUTORES**
+
 Contiene los tutores disponibles.
 Campos:
 * id_tutor
@@ -76,6 +80,7 @@ Campos:
 * estado
 
 **DISPONIBILIDAD**
+
 Registra los horarios disponibles de cada tutor.
 Campos:
 * id_disponibilidad
@@ -85,7 +90,8 @@ Campos:
 * hora_fin
 * estado
 
-**TUTORIAS**
+**TUTORIAS:**
+
 Guarda todas las tutorías solicitadas.
 Campos:
 * id_tutoria
@@ -97,13 +103,15 @@ Campos:
 * estado
 
 **Estados posibles:**
+
 * Solicitada
 * Asignada
 * Confirmada
 * Finalizada
 * Cancelada
 
-**SESIONES**
+**SESIONES:**
+
 Permite mantener el estado de la conversación con cada usuario.
 Campos:
 * telefono_usuario
@@ -121,9 +129,7 @@ El estudiante envía un mensaje por WhatsApp.
 
 Si el estudiante no existe en la base de datos, el sistema solicita la información necesaria y realiza el registro.
 
-3. Solicitud de tutoría
-
-El sistema presenta el listado de materias disponibles.
+3. Solicitud de tutoría: El sistema presenta el listado de materias disponibles.
 ------------
 
 ## capturas van aqui
