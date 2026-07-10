@@ -30,7 +30,7 @@ El sistema permite que un estudiante solicite una tutoría de forma automática,
 ## Descripción del sistema:
 
 - TutorBot es un asistente conversacional que automatiza completamente el proceso de asignación de tutorías académicas.
-El estudiante interactúa mediante WhatsApp, donde puede registrarse, solicitar una tutoría, consultar el estado de sus solicitudes o cancelar una reserva.
+El estudiante interactúa mediante telegram, donde puede registrarse, solicitar una tutoría, consultar el estado de sus solicitudes o cancelar una reserva.
 Toda la lógica del sistema es administrada por n8n, encargado de procesar los mensajes, consultar la base de datos, buscar tutores disponibles, registrar la información y enviar las notificaciones correspondientes.
 La información del sistema se almacena en Google Sheets, lo que permite disponer de una base de datos sencilla, organizada y fácil de mantener.
 -----------
@@ -39,7 +39,6 @@ La información del sistema se almacena en Google Sheets, lo que permite dispone
 * n8n
 * Telegram
 * Google Sheets
-* Google Drive
 * Webhooks
 * JavaScript (Function Nodes)
 -----------
@@ -60,32 +59,33 @@ El sistema permite:
 ## Base de datos:
 La base de datos se implementa mediante Google Sheets y está organizada en varias hojas.
 
-**ESTUDIANTES**
+**ESTUDIANTES:**
 
 Almacena la información básica de los estudiantes.
 Campos:
-* id_estudiante
-* nombre
-* teléfono
-* carrera
-* semestre
+* chat_id
+* estado
+* paso
+* updated_at
 
-**TUTORES**
+**TUTORES:**
 
 Contiene los tutores disponibles.
 Campos:
 * id_tutor
 * nombre
-* materias
+* especialidad_materia
+* whatsapp
+* email
 * estado
 
 **DISPONIBILIDAD**
 
 Registra los horarios disponibles de cada tutor.
 Campos:
-* id_disponibilidad
+* id_dispo
 * id_tutor
-* día
+* dia_semana
 * hora_inicio
 * hora_fin
 * estado
@@ -101,6 +101,7 @@ Campos:
 * fecha
 * hora
 * estado
+* created_a
 
 **Estados posibles:**
 
@@ -114,42 +115,51 @@ Campos:
 
 Permite mantener el estado de la conversación con cada usuario.
 Campos:
-* telefono_usuario
+* whatsapp
 * pantalla_actual
 * paso_actual
-* datos_temporales
+* datos_parciales
+* updated_at
+
 ------------
 
-## Flujo de funcionamiento
-1. Inicio
+## Flujo de funcionamiento de n8n:
 
-El estudiante envía un mensaje por WhatsApp.
+En primer lugar, el nodo “Espera de respuesta” recibe el mensaje enviado por el usuario desde Telegram. A continuación, el nodo de código en JavaScript extrae de forma segura los datos más importantes del mensaje, como el chat_id, que identifica la conversación para poder responder al usuario, y el texto del mensaje, que contiene la solicitud realizada. Además, el código valida que la información recibida sea correcta; si no encuentra el identificador del chat, genera un error para evitar que el flujo continúe con datos incompletos.
 
-2. Registro
+Posteriormente, el flujo consulta la base de datos, almacenada en una hoja de cálculo, con el fin de verificar si el estudiante ya se encuentra registrado en el sistema. Después de leer los registros, un segundo bloque de código analiza la información obtenida para determinar si el usuario es nuevo o si ya existe en la base de datos.
 
-Si el estudiante no existe en la base de datos, el sistema solicita la información necesaria y realiza el registro.
+Con base en esta validación, el nodo If toma una decisión. Si el estudiante no está registrado, el flujo ejecuta el nodo “Agregar nuevo usuario”, el cual almacena sus datos en la base de datos para que pueda utilizar el sistema en futuras ocasiones. Si el estudiante ya existe, el flujo continúa sin necesidad de volver a registrarlo.
 
-3. Solicitud de tutoría: El sistema presenta el listado de materias disponibles.
+Finalmente, el flujo utiliza un nodo Switch para identificar la intención del mensaje enviado por el usuario. Dependiendo de la opción seleccionada o del texto recibido, el sistema envía una respuesta automática correspondiente, como mostrar el menú principal, solicitar una tutoría, consultar una tutoría ya registrada o cancelar una tutoría. En caso de que el mensaje no coincida con ninguna opción válida, el bot responde indicando que la opción no fue reconocida.
+
+Cuando el estudiante solicita una tutoría, el sistema consulta la base de datos donde se encuentran registrados los profesores, junto con sus horarios y días disponibles, para ofrecer únicamente las opciones que realmente están disponibles. De esta manera, el proceso de asignación de tutorías se realiza de forma automática, reduciendo el tiempo de atención y evitando la intervención manual.
+
+En conjunto, este flujo integra Telegram, JavaScript y una base de datos en hojas de cálculo para gestionar el registro de estudiantes, verificar su existencia en el sistema, consultar la disponibilidad de profesores y responder automáticamente a las solicitudes de tutorías, haciendo que el proceso sea más rápido, organizado y eficiente.
 ------------
 
-## capturas van aqui
+## Evidencias: 
 
-Cuando termina la asesoría, el estado cambia a Finalizada.
+**Capturas de Telegram**
 
-Workflow desarrollado
 
-(Agregar aquí las capturas del flujo de n8n.)
+-----------
 
-Capturas de WhatsApp
+**Workflow desarrollado**
 
-Agregar capturas de:
+* Flujo de n8n:
 
-Registro
-Solicitud de tutoría
-Confirmación
-Consulta de estado
-Cancelación
-Resultados esperados
+![alt text](image.png)
+
+* Primer bloque de codigo de javascript (espera respuesta):
+
+![alt text](image-1.png)
+
+* Segundo bloque de codigo de jascript:
+
+![alt text](image-2.png)
+
+
 -----------
 ## Con la implementación del sistema se espera:
 
