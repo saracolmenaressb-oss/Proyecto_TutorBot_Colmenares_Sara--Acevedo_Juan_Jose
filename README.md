@@ -136,6 +136,7 @@ Finalmente, el flujo utiliza un nodo Switch para identificar la intención del m
 Cuando el estudiante solicita una tutoría, el sistema consulta la base de datos donde se encuentran registrados los profesores, junto con sus horarios y días disponibles, para ofrecer únicamente las opciones que realmente están disponibles. De esta manera, el proceso de asignación de tutorías se realiza de forma automática, reduciendo el tiempo de atención y evitando la intervención manual.
 
 En conjunto, este flujo integra Telegram, JavaScript y una base de datos en hojas de cálculo para gestionar el registro de estudiantes, verificar su existencia en el sistema, consultar la disponibilidad de profesores y responder automáticamente a las solicitudes de tutorías, haciendo que el proceso sea más rápido, organizado y eficiente.
+
 ------------
 
 ## Evidencias: 
@@ -149,15 +150,15 @@ En conjunto, este flujo integra Telegram, JavaScript y una base de datos en hoja
 
 * Flujo de n8n:
 
-![alt text](image.png)
+![alt text](img/image.png)
 
 * Primer bloque de codigo de javascript (espera respuesta):
 
-![alt text](image-1.png)
+![alt text](img/image-1.png)
 
 * Segundo bloque de codigo de jascript:
 
-![alt text](image-2.png)
+![alt text](img/image-2.png)
 
 
 -----------
