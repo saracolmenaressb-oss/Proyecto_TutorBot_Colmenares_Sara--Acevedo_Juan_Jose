@@ -143,6 +143,29 @@ En conjunto, este flujo integra Telegram, JavaScript y una base de datos en hoja
 
 **Capturas de Telegram**
 
+![alt text](img/inicio.jpeg)
+
+![alt text](img/opcion1.jpeg)
+
+![alt text](img/materia1.jpeg)
+
+![alt text](img/fecha1.jpeg)
+
+![alt text](img/buscar.jpeg)
+
+![alt text](img/tutor.jpeg)
+
+![alt text](img/opcion2.jpeg)
+
+![alt text](img/tutoria.jpeg)
+
+![alt text](img/opcion3.jpeg)
+
+![alt text](img/cancelar.jpeg)
+
+![alt text](img/cancelado.jpeg)
+
+![alt text](img/error1.jpeg)
 
 -----------
 
@@ -150,15 +173,25 @@ En conjunto, este flujo integra Telegram, JavaScript y una base de datos en hoja
 
 * Flujo de n8n:
 
-![alt text](img/image.png)
+![alt text](img/flujo-completo.jpeg)
 
-* Primer bloque de codigo de javascript (espera respuesta):
+![alt text](img/workflow1.jpeg)
 
-![alt text](img/image-1.png)
+![alt text](img/workflow2.jpeg)
 
-* Segundo bloque de codigo de jascript:
+![alt text](img/workflow3.jpeg)
 
-![alt text](img/image-2.png)
+![alt text](img/workflow4.jpeg)
+
+-------
+
+**Bases de datos:**
+
+![alt text](img/tabla1.jpeg)
+
+![alt text](img/imagen2.jpeg)
+
+![alt text](img/tabla3.jpeg)
 
 
 -----------
